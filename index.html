@@ -106,9 +106,10 @@
             width: 220px;
             height: 280px;
             object-fit: cover;
-            border-radius: 4px; /* Biar pas masuk di dalam frame polaroid */
+            border-radius: 4px;
         }
 
+        /* Di sini gambar background polaroid.png sudah dihapus murni */
         .polaroid {
             background: white;
             padding: 15px 15px 45px;
@@ -118,8 +119,6 @@
             transform: rotate(-3deg);
             border-radius: 4px;
             position: relative;
-            background-image: url('assets/polaroid.png'); /* Opsional: kalau mau pakai frame gambar */
-            background-size: cover;
         }
 
         .polaroid p {
@@ -285,11 +284,11 @@
 
     loadingPage();
 
-    // Efek Kelopak Bunga Gugur Menggunakan PNG Transparan Kamu
+    // Efek Kelopak Bunga Gugur
     setInterval(() => {
         const petal = document.createElement("img");
         petal.className = "petal";
-        petal.src = "assets/flower_petals.png"; // Memakai file kelopak bunga pilihanmu
+        petal.src = "assets/flower_petals.png";
         petal.style.left = Math.random() * 100 + "vw";
         petal.style.animationDuration = (5 + Math.random() * 5) + "s";
         document.body.appendChild(petal);
@@ -382,7 +381,7 @@
     }
 
     // ====================
-    // HALAMAN AKTIVITAS (MEMAKAI ASET WATERCOLOR KAMU)
+    // HALAMAN AKTIVITAS
     // ====================
     function aktivitasPage() {
         tanggalDipilih = document.getElementById("tanggal").value;
