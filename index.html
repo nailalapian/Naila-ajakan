@@ -3,105 +3,714 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Undangan Buat Arwa 💕</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;font-family:Poppins,sans-serif;background:#F8F2EC;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
-.card{background:#fff;width:100%;max-width:600px;border-radius:25px;padding:25px;box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center}
-h1{font-family:"Dancing Script",cursive;color:#24364F}
-button{background:#8FB3D9;color:#fff;border:none;padding:12px 22px;border-radius:30px;cursor:pointer}
-input{width:90%;padding:12px;border-radius:15px;border:1px solid #ddd;margin:8px 0}
-.profile{width:220px;height:280px;object-fit:cover;border-radius:15px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.item{border:1px solid #ddd;padding:15px;border-radius:15px;cursor:pointer}
-.progress{height:10px;background:#eee;border-radius:10px;overflow:hidden}
-.bar{height:100%;background:#8FB3D9;width:0;animation:load 3s forwards}
-@keyframes load{to{width:100%}}
-#noBtn{background:#eee;color:#666}
-.result{background:#fff8fb;border:2px dashed #8FB3D9;padding:15px;border-radius:15px}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F8F2EC;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow-x:hidden;
+}
+
+.container{
+width:100%;
+max-width:650px;
+background:white;
+padding:30px;
+border-radius:30px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+h1{
+font-family:'Dancing Script',cursive;
+font-size:48px;
+color:#24364F;
+margin-bottom:15px;
+}
+
+h2{
+color:#24364F;
+font-size:22px;
+margin-bottom:15px;
+}
+
+p{
+color:#666;
+}
+
+button{
+border:none;
+padding:13px 25px;
+border-radius:50px;
+cursor:pointer;
+font-size:15px;
+font-weight:600;
+transition:.3s;
+}
+
+.btn-primary{
+background:#8FB3D9;
+color:white;
+}
+
+.btn-primary:hover{
+transform:translateY(-3px);
+}
+
+.btn-secondary{
+background:#eee;
+color:#666;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:15px;
+border:1px solid #ddd;
+margin-top:10px;
+font-size:15px;
+}
+
+.profile{
+width:220px;
+height:280px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.polaroid{
+background:white;
+padding:10px 10px 30px;
+width:240px;
+margin:auto;
+border-radius:8px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transform:rotate(-3deg);
+}
+
+.polaroid p{
+margin-top:10px;
+font-weight:600;
+color:#e91e63;
+}
+
+.progress{
+width:100%;
+height:12px;
+background:#eee;
+border-radius:20px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:#8FB3D9;
+animation:loading 3s linear forwards;
+}
+
+@keyframes loading{
+to{
+width:100%;
+}
+}
+
+.flower{
+font-size:80px;
+animation:bloom 2s ease;
+}
+
+@keyframes bloom{
+0%{
+transform:scale(0);
+opacity:0;
+}
+
+100%{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.envelope{
+font-size:120px;
+cursor:pointer;
+transition:.3s;
+}
+
+.envelope:hover{
+transform:scale(1.1);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-top:20px;
+}
+
+.activity{
+padding:15px;
+border:1px solid #eee;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.activity:hover{
+transform:translateY(-5px);
+background:#f7fbff;
+}
+
+.activity span{
+font-size:40px;
+display:block;
+margin-bottom:10px;
+}
+
+.result-card{
+background:#FFF8FB;
+border:2px dashed #8FB3D9;
+border-radius:20px;
+padding:20px;
+margin-top:15px;
+}
+
+.time-group{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+margin-top:15px;
+}
+
+.time-btn{
+background:#f2f2f2;
+color:#555;
+}
+
+.selected{
+background:#8FB3D9 !important;
+color:white !important;
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:38px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.time-group{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
 </style>
 </head>
+
 <body>
-<div class="card" id="app"></div>
+
+<div class="container" id="app"></div>
 
 <script>
-const app=document.getElementById("app");
-let tanggal="",jam="",aktivitas="";
 
-loading();
+const app = document.getElementById("app");
 
-function loading(){
-app.innerHTML=`<div style="font-size:70px">🌸</div><h2>Sebentar, bunganya sedang mekar...</h2><div class="progress"><div class="bar"></div></div>`;
-setTimeout(amplop,3000);
+const foto =
+"https://raw.githubusercontent.com/nailalapian/Naila-ajakan/main/IMG-20260612-WA0027.jpg";
+
+let tanggalDipilih = "";
+let jamDipilih = "";
+let waktuDipilih = "";
+let aktivitasDipilih = "";
+
+loadingPage();
+  function loadingPage(){
+
+app.innerHTML = `
+
+<div class="flower">🌸</div>
+
+<h2>Sebentar, bunganya sedang mekar...</h2>
+
+<p>Tunggu bentar ya sayang 💕</p>
+
+<div class="progress">
+<div class="bar"></div>
+</div>
+
+`;
+
+setTimeout(()=>{
+amplopPage();
+},3000);
+
 }
 
-function amplop(){
-app.innerHTML=`<p>UNDANGAN PRIBADI</p><h1>Buat Arwa</h1><div style="font-size:100px;cursor:pointer" onclick="ajakan()">✉️</div><p>Ada sesuatu buat kamu sayangku 💕</p>`;
+// ====================
+// HALAMAN AMPLOP
+// ====================
+
+function amplopPage(){
+
+app.innerHTML = `
+
+<p style="color:#e91e63;font-weight:600;">
+Undangan Pribadi
+</p>
+
+<h1>buat Arwa 💕</h1>
+
+<div
+class="envelope"
+onclick="ajakanPage()">
+💌
+</div>
+
+<p>
+Ada sesuatu buat kamu sayangku
+</p>
+
+<p style="font-size:12px;margin-top:10px;">
+Tap amplopnya buat buka
+</p>
+
+`;
+
 }
 
-function ajakan(){
-app.innerHTML=`
-<img class="profile" src="https://raw.githubusercontent.com/nailalapian/Naila-ajakan/main/IMG-20260612-WA0027.jpg">
-<h1>Mau enggak kamu pergi kencan denganku?</h1>
-<button onclick="tanggalPage()">Mau Buanget!</button>
-<button id="noBtn">Ga Ah</button>`;
+// ====================
+// HALAMAN AJAKAN
+// ====================
 
-const n=document.getElementById("noBtn");
-n.onmouseover=()=>{
-n.style.position="fixed";
-n.style.left=Math.random()*80+"vw";
-n.style.top=Math.random()*80+"vh";
-};
+function ajakanPage(){
+
+app.innerHTML = `
+
+<div class="polaroid">
+
+<img
+src="${foto}"
+class="profile">
+
+<p>buat Arwa 💕</p>
+
+</div>
+
+<br>
+
+<h2>
+Mau enggak kamu pergi
+kencan denganku?
+</h2>
+
+<p>
+Aduu, pencet aja tombol
+"Mau Buanget!"
+</p>
+
+<br>
+
+<div id="buttonArea">
+
+<button
+class="btn-primary"
+onclick="tanggalPage()">
+Mau Buanget! 💕
+</button>
+
+<button
+class="btn-secondary"
+id="btnNo">
+Ga Ah 😝
+</button>
+
+</div>
+
+`;
+
+const btnNo =
+document.getElementById("btnNo");
+
+btnNo.addEventListener(
+"mouseover",
+()=>{
+
+const x =
+Math.random()*
+(window.innerWidth-150);
+
+const y =
+Math.random()*
+(window.innerHeight-80);
+
+btnNo.style.position =
+"fixed";
+
+btnNo.style.left =
+x + "px";
+
+btnNo.style.top =
+y + "px";
+
 }
+);
+
+}
+
+// ====================
+// HALAMAN TANGGAL
+// ====================
 
 function tanggalPage(){
-app.innerHTML=`
-<h1>Kapan Sayangku Free?</h1>
-<input type="date" id="tgl"><br>
-<input type="time" id="jm"><br><br>
-<button onclick="aktivitasPage()">Lanjut</button>`;
+
+app.innerHTML = `
+
+<h1>
+Kapan sayangku free?
+</h1>
+
+<p>
+Pilih tanggal dan waktu ya 💕
+</p>
+
+<input
+type="date"
+id="tanggal">
+
+<div class="time-group">
+
+<button
+class="time-btn"
+onclick="pilihWaktu(this)">
+Pagi
+</button>
+
+<button
+class="time-btn"
+onclick="pilihWaktu(this)">
+Siang
+</button>
+
+<button
+class="time-btn"
+onclick="pilihWaktu(this)">
+Sore
+</button>
+
+<button
+class="time-btn"
+onclick="pilihWaktu(this)">
+Malam
+</button>
+
+</div>
+
+<input
+type="time"
+id="jam">
+
+<br><br>
+
+<button
+class="btn-primary"
+onclick="aktivitasPage()">
+
+Lanjut ➜
+
+</button>
+
+`;
+
 }
 
-function aktivitasPage(){
-tanggal=document.getElementById("tgl").value;
-jam=document.getElementById("jm").value;
-app.innerHTML=`
-<h1>Nanti Kita Ngapain Sayang?</h1>
+// ====================
+// PILIH WAKTU
+// ====================
+
+function pilihWaktu(el){
+
+document
+.querySelectorAll(".time-btn")
+.forEach(btn=>{
+
+btn.classList.remove(
+"selected"
+);
+
+});
+
+el.classList.add(
+"selected"
+);
+
+waktuDipilih =
+el.innerText;
+
+}
+  function aktivitasPage(){
+
+tanggalDipilih =
+document.getElementById(
+"tanggal"
+).value;
+
+jamDipilih =
+document.getElementById(
+"jam"
+).value;
+
+if(
+tanggalDipilih==="" ||
+jamDipilih==="" ||
+waktuDipilih===""
+){
+alert(
+"Isi tanggal, jam, dan waktu dulu ya 💕"
+);
+return;
+}
+
+app.innerHTML = `
+
+<h1>
+Nanti kita ngapain sayang?
+</h1>
+
+<p>
+Pilih aktivitas favorit kita 💕
+</p>
+
 <div class="grid">
-<div class="item" onclick="pilih('🍝 Makan Bareng')">🍝<br>Makan Bareng</div>
-<div class="item" onclick="pilih('☕ Ngopi Cantik')">☕<br>Ngopi</div>
-<div class="item" onclick="pilih('🎬 Nonton')">🎬<br>Nonton</div>
-<div class="item" onclick="pilih('🌅 Jalan Sore')">🌅<br>Jalan</div>
-<div class="item" onclick="pilih('🧺 Piknik')">🧺<br>Piknik</div>
-<div class="item" onclick="pilih('🎮 Main Bareng')">🎮<br>Main</div>
-<div class="item" onclick="pilih('🛍️ Belanja')">🛍️<br>Belanja</div>
-<div class="item" onclick="pilih('🏠 Mager')">🏠<br>Mager</div>
-</div>`;
+
+<div
+class="activity"
+onclick="pilihAktivitas('🍝 Makan Bareng')">
+
+<span>🍝</span>
+
+Makan Bareng
+
+</div>
+
+<div
+class="activity"
+onclick="pilihAktivitas('☕ Ngopi Cantik')">
+
+<span>☕</span>
+
+Ngopi Cantik
+
+</div>
+
+<div
+class="activity"
+onclick="pilihAktivitas('🎬 Nonton')">
+
+<span>🎬</span>
+
+Nonton
+
+</div>
+
+<div
+class="activity"
+onclick="pilihAktivitas('🌅 Jalan Sore')">
+
+<span>🌅</span>
+
+Jalan Sore
+
+</div>
+
+<div
+class="activity"
+onclick="pilihAktivitas('🧺 Piknik')">
+
+<span>🧺</span>
+
+Piknik
+
+</div>
+
+<div
+class="activity"
+onclick="pilihAktivitas('🎮 Main Bareng')">
+
+<span>🎮</span>
+
+Main Bareng
+
+</div>
+
+<div
+class="activity"
+onclick="pilihAktivitas('🛍️ Belanja')">
+
+<span>🛍️</span>
+
+Belanja
+
+</div>
+
+<div
+class="activity"
+onclick="pilihAktivitas('🏠 Mager di Rumah')">
+
+<span>🏠</span>
+
+Mager di Rumah
+
+</div>
+
+</div>
+
+`;
+
 }
 
-function pilih(a){aktivitas=a;hasil();}
+// ====================
+// PILIH AKTIVITAS
+// ====================
 
-function hasil(){
-app.innerHTML=`
-<h1>Yeay! 💕</h1>
-<div class="result">
-<h3>Date Plan Kita</h3>
-<p>📅 ${tanggal}</p>
-<p>🕒 ${jam}</p>
-<p>${aktivitas}</p>
-<p>Aku tunggu ya ❤️</p>
-</div><br>
-<button onclick="shareResult()">💕 Bagikan</button>`;
+function pilihAktivitas(nama){
+
+aktivitasDipilih = nama;
+
+hasilPage();
+
 }
 
-function shareResult(){
-const text=`💕 Date Plan Kita\n📅 ${tanggal}\n🕒 ${jam}\n${aktivitas}\n❤️`;
+// ====================
+// HALAMAN HASIL
+// ====================
+
+function hasilPage(){
+
+app.innerHTML = `
+
+<h1>
+Yeay! 💕
+</h1>
+
+<p>
+Date plan kita berhasil dibuat
+</p>
+
+<div class="result-card">
+
+<h3>
+💕 Date Plan Kita 💕
+</h3>
+
+<br>
+
+<p>
+📅 ${tanggalDipilih}
+</p>
+
+<p>
+🕒 ${waktuDipilih}
+</p>
+
+<p>
+⏰ ${jamDipilih}
+</p>
+
+<p>
+${aktivitasDipilih}
+</p>
+
+<br>
+
+<p>
+Aku tunggu ya ❤️
+</p>
+
+</div>
+
+<br>
+
+<button
+class="btn-primary"
+onclick="bagikanHasil()">
+
+💕 Bagikan
+
+</button>
+
+`;
+
+}
+
+// ====================
+// SHARE
+// ====================
+
+function bagikanHasil(){
+
+const teks =
+
+`💕 Date Plan Kita 💕
+
+📅 ${tanggalDipilih}
+
+🕒 ${waktuDipilih}
+
+⏰ ${jamDipilih}
+
+🎯 ${aktivitasDipilih}
+
+Aku tunggu ya ❤️`;
+
 if(navigator.share){
-navigator.share({title:'Date Plan',text:text,url:location.href});
+
+navigator.share({
+
+title:
+"Date Plan Kita 💕",
+
+text:
+teks,
+
+url:
+window.location.href
+
+});
+
 }else{
-alert(text);
+
+alert(teks);
+
 }
+
 }
+
 </script>
+
 </body>
 </html>
