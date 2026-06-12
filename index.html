@@ -398,27 +398,33 @@ Ga Ah 😝
 const btnNo =
 document.getElementById("btnNo");
 
-btnNo.addEventListener(
-"mouseover",
-()=>{
+function lariTombol(){
 
 const x =
-Math.random()*
-(window.innerWidth-150);
+Math.random() *
+(window.innerWidth - 120);
 
 const y =
-Math.random()*
-(window.innerHeight-80);
+Math.random() *
+(window.innerHeight - 60);
 
-btnNo.style.position =
-"fixed";
+btnNo.style.position = "fixed";
+btnNo.style.left = x + "px";
+btnNo.style.top = y + "px";
+btnNo.style.zIndex = "9999";
 
-btnNo.style.left =
-x + "px";
+}
 
-btnNo.style.top =
-y + "px";
+btnNo.addEventListener(
+"mouseover",
+lariTombol
+);
 
+btnNo.addEventListener(
+"touchstart",
+function(e){
+e.preventDefault();
+lariTombol();
 }
 );
 
