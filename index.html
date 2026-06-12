@@ -248,6 +248,13 @@ grid-template-columns:repeat(2,1fr);
 <body>
 
 <div class="container" id="app"></div>
+  <audio autoplay loop>
+
+<source
+src="music.mp3"
+type="audio/mpeg">
+
+  </audio>
 
 <script>
 
@@ -656,7 +663,9 @@ Yeay! 💕
 Date plan kita berhasil dibuat
 </p>
 
-<div class="result-card">
+<div
+class="result-card"
+id="resultCard">
 
 <h3>
 💕 Date Plan Kita 💕
@@ -695,6 +704,15 @@ class="btn-primary"
 onclick="bagikanHasil()">
 
 💕 Bagikan
+<br><br>
+
+<button
+class="btn-primary"
+onclick="downloadCard()">
+
+📷 Simpan Gambar
+
+</button>
 
 </button>
 
@@ -707,6 +725,28 @@ onclick="bagikanHasil()">
 // ====================
 
 function bagikanHasil(){
+  function downloadCard(){
+
+html2canvas(
+document.getElementById(
+"resultCard"
+)
+).then(canvas=>{
+
+const link =
+document.createElement("a");
+
+link.download =
+"date-plan.png";
+
+link.href =
+canvas.toDataURL();
+
+link.click();
+
+});
+
+  }
 
 const teks =
 
