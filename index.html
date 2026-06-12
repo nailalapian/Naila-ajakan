@@ -109,7 +109,6 @@
             border-radius: 4px;
         }
 
-        /* Di sini gambar background polaroid.png sudah dihapus murni */
         .polaroid {
             background: white;
             padding: 15px 15px 45px;
@@ -381,7 +380,7 @@
     }
 
     // ====================
-    // HALAMAN AKTIVITAS
+    // HALAMAN AKTIVITAS (TANPA MAIN BARENG)
     // ====================
     function aktivitasPage() {
         tanggalDipilih = document.getElementById("tanggal").value;
@@ -401,7 +400,6 @@
                 <div class="activity" onclick="pilihAktivitas('🎬 Nonton')"><img src="assets/nonton.png"><p>Nonton</p></div>
                 <div class="activity" onclick="pilihAktivitas('🌅 Jalan Sore')"><img src="assets/jalan.png"><p>Jalan Sore</p></div>
                 <div class="activity" onclick="pilihAktivitas('🧺 Piknik')"><img src="assets/piknik.png"><p>Piknik</p></div>
-                <div class="activity" onclick="pilihAktivitas('🎮 Main Bareng')"><img src="assets/main.png"><p>Main Bareng</p></div>
                 <div class="activity" onclick="pilihAktivitas('🛍️ Belanja')"><img src="assets/belanja.png"><p>Belanja</p></div>
                 <div class="activity" onclick="pilihAktivitas('🏠 Mager di Rumah')"><img src="assets/mager.png"><p>Mager di Rumah</p></div>
             </div>
@@ -439,6 +437,9 @@
         `;
     }
 
+    // ====================
+    // SIMPAN GAMBAR CARD
+    // ====================
     function downloadCard() {
         html2canvas(document.getElementById("resultCard")).then(canvas => {
             const link = document.createElement("a");
@@ -448,6 +449,9 @@
         });
     }
 
+    // ====================
+    // SHARE JALUR WEB API
+    // ====================
     function bagikanHasil() {
         const teks = `💕 Date Plan Kita 💕\n\n📅 ${tanggalDipilih}\n🕒 ${waktuDipilih}\n⏰ ${jamDipilih}\n🎯 ${aktivitasDipilih}\n\nAku tunggu ya ❤️`;
         if (navigator.share) {
