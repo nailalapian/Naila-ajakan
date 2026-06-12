@@ -212,7 +212,20 @@ color:#555;
 background:#8FB3D9 !important;
 color:white !important;
 }
+.petal{
+position:fixed;
+top:-50px;
+font-size:25px;
+animation:fall linear infinite;
+pointer-events:none;
+z-index:999;
+}
 
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
 @media(max-width:600px){
 
 h1{
@@ -249,6 +262,28 @@ let waktuDipilih = "";
 let aktivitasDipilih = "";
 
 loadingPage();
+  setInterval(()=>{
+
+const petal =
+document.createElement("div");
+
+petal.className="petal";
+
+petal.innerHTML="🌸";
+
+petal.style.left=
+Math.random()*100+"vw";
+
+petal.style.animationDuration=
+(5+Math.random()*5)+"s";
+
+document.body.appendChild(petal);
+
+setTimeout(()=>{
+petal.remove();
+},10000);
+
+},500);
   function loadingPage(){
 
 app.innerHTML = `
@@ -711,6 +746,7 @@ alert(teks);
 }
 
 </script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 </body>
 </html>
