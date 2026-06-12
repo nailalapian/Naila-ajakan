@@ -1,819 +1,472 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Buat Arwa 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<title>Undangan Buat Arwa 💕</title>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #F8F2EC;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-<style>
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            color: #24364F;
+            margin-bottom: 15px;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        h2 {
+            color: #24364F;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
 
-body{
-font-family:'Poppins',sans-serif;
-background:#F8F2EC;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-overflow-x:hidden;
-}
+        p {
+            color: #666;
+        }
 
-.container{
-width:100%;
-max-width:650px;
-background:white;
-padding:30px;
-border-radius:30px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-text-align:center;
-position:relative;
-overflow:hidden;
-}
+        button {
+            border: none;
+            padding: 13px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: .3s;
+        }
 
-h1{
-font-family:'Dancing Script',cursive;
-font-size:48px;
-color:#24364F;
-margin-bottom:15px;
-}
+        .btn-primary {
+            background: #8FB3D9;
+            color: white;
+        }
 
-h2{
-color:#24364F;
-font-size:22px;
-margin-bottom:15px;
-}
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
 
-p{
-color:#666;
-}
+        .btn-secondary {
+            background: #eee;
+            color: #666;
+        }
 
-button{
-border:none;
-padding:13px 25px;
-border-radius:50px;
-cursor:pointer;
-font-size:15px;
-font-weight:600;
-transition:.3s;
-}
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            font-size: 15px;
+        }
 
-.btn-primary{
-background:#8FB3D9;
-color:white;
-}
+        .profile {
+            width: 220px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+        }
 
-.btn-primary:hover{
-transform:translateY(-3px);
-}
+        .polaroid {
+            background: white;
+            padding: 12px 12px 40px;
+            width: 250px;
+            margin: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+            transform: rotate(-3deg);
+            border-radius: 8px;
+        }
 
-.btn-secondary{
-background:#eee;
-color:#666;
-}
+        .polaroid p {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #e91e63;
+        }
 
-input{
-width:100%;
-padding:14px;
-border-radius:15px;
-border:1px solid #ddd;
-margin-top:10px;
-font-size:15px;
-}
+        .progress {
+            width: 100%;
+            height: 12px;
+            background: #eee;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
 
-.profile{
-width:220px;
-height:280px;
-object-fit:cover;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-}
+        .bar {
+            height: 100%;
+            width: 0%;
+            background: #8FB3D9;
+            animation: loading 3s linear forwards;
+        }
 
-.polaroid{
-background:white;
-padding:12px 12px 40px;
-width:250px;
-margin:auto;
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-transform:rotate(-3deg);
-border-radius:8px;
-}
+        @keyframes loading {
+            to { width: 100%; }
+        }
 
-.polaroid p{
-margin-top:10px;
-font-weight:600;
-color:#e91e63;
-}
+        .flower {
+            font-size: 80px;
+            animation: bloom 2s ease;
+        }
 
-.progress{
-width:100%;
-height:12px;
-background:#eee;
-border-radius:20px;
-overflow:hidden;
-margin-top:20px;
-}
+        @keyframes bloom {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
-.bar{
-height:100%;
-width:0%;
-background:#8FB3D9;
-animation:loading 3s linear forwards;
-}
+        .envelope {
+            font-size: 120px;
+            cursor: pointer;
+            transition: .3s;
+        }
 
-@keyframes loading{
-to{
-width:100%;
-}
-}
+        .envelope:hover { transform: scale(1.1); }
 
-.flower{
-font-size:80px;
-animation:bloom 2s ease;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
 
-@keyframes bloom{
-0%{
-transform:scale(0);
-opacity:0;
-}
+        .activity {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: .3s;
+        }
 
-100%{
-transform:scale(1);
-opacity:1;
-}
-}
+        .activity:hover {
+            transform: translateY(-5px);
+            background: #f7fbff;
+        }
 
-.envelope{
-font-size:120px;
-cursor:pointer;
-transition:.3s;
-}
+        .activity span {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
+        }
 
-.envelope:hover{
-transform:scale(1.1);
-}
+        .result-card {
+            background: #FFF8FB;
+            border: 2px dashed #8FB3D9;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 15px;
+        }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-margin-top:20px;
-}
+        .time-group {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
 
-.activity{
-padding:15px;
-border:1px solid #eee;
-border-radius:20px;
-cursor:pointer;
-transition:.3s;
-}
+        .time-btn {
+            background: #f2f2f2;
+            color: #555;
+        }
 
-.activity:hover{
-transform:translateY(-5px);
-background:#f7fbff;
-}
+        .selected {
+            background: #8FB3D9 !important;
+            color: white !important;
+        }
 
-.activity span{
-font-size:40px;
-display:block;
-margin-bottom:10px;
-}
+        .petal {
+            position: fixed;
+            top: -50px;
+            font-size: 25px;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 999;
+        }
 
-.result-card{
-background:#FFF8FB;
-border:2px dashed #8FB3D9;
-border-radius:20px;
-padding:20px;
-margin-top:15px;
-}
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
 
-.time-group{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:8px;
-margin-top:15px;
-}
+        .music-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #8FB3D9;
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+        }
 
-.time-btn{
-background:#f2f2f2;
-color:#555;
-}
-
-.selected{
-background:#8FB3D9 !important;
-color:white !important;
-}
-.petal{
-position:fixed;
-top:-50px;
-font-size:25px;
-animation:fall linear infinite;
-pointer-events:none;
-z-index:999;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
-}
-@media(max-width:600px){
-
-h1{
-font-size:38px;
-}
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.time-group{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-</style.music-btn{
-position:fixed;
-top:15px;
-right:15px;
-width:50px;
-height:50px;
-border-radius:50%;
-background:#8FB3D9;
-color:white;
-border:none;
-font-size:20px;
-cursor:pointer;
-z-index:9999;
-box-shadow:0 4px 10px rgba(0,0,0,.2);
-}>
-
+        @media(max-width:600px){
+            h1 { font-size: 38px; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            .time-group { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
 </head>
-
 <body>
   
-<button
-class="music-btn"
-onclick="document.getElementById('musik').play()">
-🎵
-  </button>
+    <button class="music-btn" onclick="toggleMusic()">🎵</button>
 
-<div class="container" id="app"></div>
-  <audio id="musik" autoplay loop>
+    <div class="container" id="app"></div>
 
-<source
-src="ssstik.io_1781257960465.mp3"
-type="audio/mpeg">
-
-  </audio>
+    <audio id="musik" loop>
+        <source src="ssstik.io_1781257960465.mp3" type="audio/mpeg">
+    </audio>
 
 <script>
-
-const app = document.getElementById("app");
-
-const foto =
-"https://raw.githubusercontent.com/nailalapian/Naila-ajakan/main/IMG-20260612-WA0027.jpg";
-
-let tanggalDipilih = "";
-let jamDipilih = "";
-let waktuDipilih = "";
-let aktivitasDipilih = "";
-
-loadingPage();
-  setInterval(()=>{
-
-const petal =
-document.createElement("div");
-
-petal.className="petal";
-
-petal.innerHTML="🌸";
-
-petal.style.left=
-Math.random()*100+"vw";
-
-petal.style.animationDuration=
-(5+Math.random()*5)+"s";
-
-document.body.appendChild(petal);
-
-setTimeout(()=>{
-petal.remove();
-},10000);
-
-},500);
-  function loadingPage(){
-
-app.innerHTML = `
-
-<div class="flower">🌸</div>
-
-<h2>Sebentar, bunganya sedang mekar...</h2>
-
-<p>Tunggu bentar ya sayang 💕</p>
-
-<div class="progress">
-<div class="bar"></div>
-</div>
-
-`;
-
-setTimeout(()=>{
-amplopPage();
-},3000);
-
-}
-
-// ====================
-// HALAMAN AMPLOP
-// ====================
-
-function amplopPage(){
-
-app.innerHTML = `
-
-<p style="color:#e91e63;font-weight:600;">
-Undangan Pribadi
-</p>
-
-<h1>buat Arwa 💕</h1>
-
-<div
-class="envelope"
-onclick="ajakanPage()">
-💌
-</div>
-
-<p>
-Ada sesuatu buat kamu sayangku
-</p>
-
-<p style="font-size:12px;margin-top:10px;">
-Tap amplopnya buat buka
-</p>
-
-`;
-
-}
-
-// ====================
-// HALAMAN AJAKAN
-// ====================
-
-function ajakanPage(){
-
-app.innerHTML = `
-
-<div class="polaroid">
-
-<img
-src="${foto}"
-class="profile">
-
-<p>buat Arwa 💕</p>
-
-</div>
-
-<br>
-
-<h2>
-Mau enggak kamu pergi
-kencan denganku?
-</h2>
-
-<p>
-Aduu, pencet aja tombol
-"Mau Buanget!"
-</p>
-
-<br>
-
-<div id="buttonArea">
-
-<button
-class="btn-primary"
-onclick="tanggalPage()">
-Mau Buanget! 💕
-</button>
-
-<button
-class="btn-secondary"
-id="btnNo">
-Ga Ah 😝
-</button>
-
-</div>
-
-`;
-
-const btnNo =
-document.getElementById("btnNo");
-
-function lariTombol(){
-
-const x =
-Math.random() *
-(window.innerWidth - 120);
-
-const y =
-Math.random() *
-(window.innerHeight - 60);
-
-btnNo.style.position = "fixed";
-btnNo.style.left = x + "px";
-btnNo.style.top = y + "px";
-btnNo.style.zIndex = "9999";
-
-}
-
-btnNo.addEventListener(
-"mouseover",
-lariTombol
-);
-
-btnNo.addEventListener(
-"touchstart",
-function(e){
-e.preventDefault();
-lariTombol();
-}
-);
-
-}
-
-// ====================
-// HALAMAN TANGGAL
-// ====================
-
-function tanggalPage(){
-
-app.innerHTML = `
-
-<h1>
-Kapan sayangku free?
-</h1>
-
-<p>
-Pilih tanggal dan waktu ya 💕
-</p>
-
-<input
-type="date"
-id="tanggal">
-
-<div class="time-group">
-
-<button
-class="time-btn"
-onclick="pilihWaktu(this)">
-Pagi
-</button>
-
-<button
-class="time-btn"
-onclick="pilihWaktu(this)">
-Siang
-</button>
-
-<button
-class="time-btn"
-onclick="pilihWaktu(this)">
-Sore
-</button>
-
-<button
-class="time-btn"
-onclick="pilihWaktu(this)">
-Malam
-</button>
-
-</div>
-
-<input
-type="time"
-id="jam">
-
-<br><br>
-
-<button
-class="btn-primary"
-onclick="aktivitasPage()">
-
-Lanjut ➜
-
-</button>
-
-`;
-
-}
-
-// ====================
-// PILIH WAKTU
-// ====================
-
-function pilihWaktu(el){
-
-document
-.querySelectorAll(".time-btn")
-.forEach(btn=>{
-
-btn.classList.remove(
-"selected"
-);
-
-});
-
-el.classList.add(
-"selected"
-);
-
-waktuDipilih =
-el.innerText;
-
-}
-  function aktivitasPage(){
-
-tanggalDipilih =
-document.getElementById(
-"tanggal"
-).value;
-
-jamDipilih =
-document.getElementById(
-"jam"
-).value;
-
-if(
-tanggalDipilih==="" ||
-jamDipilih==="" ||
-waktuDipilih===""
-){
-alert(
-"Isi tanggal, jam, dan waktu dulu ya 💕"
-);
-return;
-}
-
-app.innerHTML = `
-
-<h1>
-Nanti kita ngapain sayang?
-</h1>
-
-<p>
-Pilih aktivitas favorit kita 💕
-</p>
-
-<div class="grid">
-
-<div
-class="activity"
-onclick="pilihAktivitas('🍝 Makan Bareng')">
-
-<span>🍝</span>
-
-Makan Bareng
-
-</div>
-
-<div
-class="activity"
-onclick="pilihAktivitas('☕ Ngopi Cantik')">
-
-<span>☕</span>
-
-Ngopi Cantik
-
-</div>
-
-<div
-class="activity"
-onclick="pilihAktivitas('🎬 Nonton')">
-
-<span>🎬</span>
-
-Nonton
-
-</div>
-
-<div
-class="activity"
-onclick="pilihAktivitas('🌅 Jalan Sore')">
-
-<span>🌅</span>
-
-Jalan Sore
-
-</div>
-
-<div
-class="activity"
-onclick="pilihAktivitas('🧺 Piknik')">
-
-<span>🧺</span>
-
-Piknik
-
-</div>
-
-<div
-class="activity"
-onclick="pilihAktivitas('🎮 Main Bareng')">
-
-<span>🎮</span>
-
-Main Bareng
-
-</div>
-
-<div
-class="activity"
-onclick="pilihAktivitas('🛍️ Belanja')">
-
-<span>🛍️</span>
-
-Belanja
-
-</div>
-
-<div
-class="activity"
-onclick="pilihAktivitas('🏠 Mager di Rumah')">
-
-<span>🏠</span>
-
-Mager di Rumah
-
-</div>
-
-</div>
-
-`;
-
-}
-
-// ====================
-// PILIH AKTIVITAS
-// ====================
-
-function pilihAktivitas(nama){
-
-aktivitasDipilih = nama;
-
-hasilPage();
-
-}
-
-// ====================
-// HALAMAN HASIL
-// ====================
-
-function hasilPage(){
-
-app.innerHTML = `
-
-<h1>
-Yeay! 💕
-</h1>
-
-<p>
-Date plan kita berhasil dibuat
-</p>
-
-<div
-class="result-card"
-id="resultCard">
-
-<h3>
-💕 Date Plan Kita 💕
-</h3>
-
-<br>
-
-<p>
-📅 ${tanggalDipilih}
-</p>
-
-<p>
-🕒 ${waktuDipilih}
-</p>
-
-<p>
-⏰ ${jamDipilih}
-</p>
-
-<p>
-${aktivitasDipilih}
-</p>
-
-<br>
-
-<p>
-Aku tunggu ya ❤️
-</p>
-
-</div>
-
-<br>
-
-<button
-class="btn-primary"
-onclick="bagikanHasil()">
-
-💕 Bagikan
-<br><br>
-
-<button
-class="btn-primary"
-onclick="downloadCard()">
-
-📷 Simpan Gambar
-
-</button>
-
-</button>
-
-`;
-
-}
-
-// ====================
-// SHARE
-// ====================
-
-function bagikanHasil(){
-  function downloadCard(){
-
-html2canvas(
-document.getElementById(
-"resultCard"
-)
-).then(canvas=>{
-
-const link =
-document.createElement("a");
-
-link.download =
-"date-plan.png";
-
-link.href =
-canvas.toDataURL();
-
-link.click();
-
-});
-
-  }
-
-const teks =
-
-`💕 Date Plan Kita 💕
-
-📅 ${tanggalDipilih}
-
-🕒 ${waktuDipilih}
-
-⏰ ${jamDipilih}
-
-🎯 ${aktivitasDipilih}
-
-Aku tunggu ya ❤️`;
-
-if(navigator.share){
-
-navigator.share({
-
-title:
-"Date Plan Kita 💕",
-
-text:
-teks,
-
-url:
-window.location.href
-
-});
-
-}else{
-
-alert(teks);
-
-}
-
-}
-
+    const app = document.getElementById("app");
+    const foto = "https://raw.githubusercontent.com/nailalapian/Naila-ajakan/main/IMG-20260612-WA0027.jpg";
+
+    let tanggalDipilih = "";
+    let jamDipilih = "";
+    let waktuDipilih = "";
+    let aktivitasDipilih = "";
+
+    // Fungsi Pengatur Musik agar tidak terblokir kebijakan browser autoplay otomatis
+    function toggleMusic() {
+        const audio = document.getElementById('musik');
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }
+
+    loadingPage();
+
+    // Efek Kelopak Bunga Sakura Gugur
+    setInterval(() => {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.innerHTML = "🌸";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+            petal.remove();
+        }, 10000);
+    }, 500);
+
+    // ====================
+    // HALAMAN LOADING
+    // ====================
+    function loadingPage() {
+        app.innerHTML = `
+            <div class="flower">🌸</div>
+            <h2>Sebentar, bunganya sedang mekar...</h2>
+            <p>Tunggu bentar ya sayang 💕</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+        `;
+        setTimeout(() => {
+            amplopPage();
+        }, 3000);
+    }
+
+    // ====================
+    // HALAMAN AMPLOP
+    // ====================
+    function amplopPage() {
+        app.innerHTML = `
+            <p style="color:#e91e63;font-weight:600;">Undangan Pribadi</p>
+            <h1>buat Arwa 💕</h1>
+            <div class="envelope" onclick="ajakanPage()">💌</div>
+            <p>Ada sesuatu buat kamu sayangku</p>
+            <p style="font-size:12px;margin-top:10px;">Tap amplopnya buat buka</p>
+        `;
+    }
+
+    // ====================
+    // HALAMAN AJAKAN
+    // ====================
+    function ajakanPage() {
+        app.innerHTML = `
+            <div class="polaroid">
+                <img src="${foto}" class="profile">
+                <p>buat Arwa 💕</p>
+            </div>
+            <br>
+            <h2>Mau enggak kamu pergi kencan denganku?</h2>
+            <p>Aduu, pencet aja tombol "Mau Buanget!"</p>
+            <br>
+            <div id="buttonArea" style="height: 60px; position: relative;">
+                <button class="btn-primary" onclick="tanggalPage()">Mau Buanget! 💕</button>
+                <button class="btn-secondary" id="btnNo">Ga Ah 😝</button>
+            </div>
+        `;
+
+        const btnNo = document.getElementById("btnNo");
+        function lariTombol() {
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+
+            btnNo.style.position = "fixed";
+            btnNo.style.left = x + "px";
+            btnNo.style.top = y + "px";
+            btnNo.style.zIndex = "9999";
+        }
+
+        btnNo.addEventListener("mouseover", lariTombol);
+        btnNo.addEventListener("touchstart", function(e) {
+            e.preventDefault();
+            lariTombol();
+        });
+    }
+
+    // ====================
+    // HALAMAN TANGGAL
+    // ====================
+    function tanggalPage() {
+        app.innerHTML = `
+            <h1>Kapan sayangku free?</h1>
+            <p>Pilih tanggal dan waktu ya 💕</p>
+            <input type="date" id="tanggal">
+            <div class="time-group">
+                <button class="time-btn" onclick="pilihWaktu(this)">Pagi</button>
+                <button class="time-btn" onclick="pilihWaktu(this)">Siang</button>
+                <button class="time-btn" onclick="pilihWaktu(this)">Sore</button>
+                <button class="time-btn" onclick="pilihWaktu(this)">Malam</button>
+            </div>
+            <input type="time" id="jam">
+            <br><br>
+            <button class="btn-primary" onclick="aktivitasPage()">Lanjut ➜</button>
+        `;
+    }
+
+    // ====================
+    // PILIH WAKTU
+    // ====================
+    function pilihWaktu(el) {
+        document.querySelectorAll(".time-btn").forEach(btn => {
+            btn.classList.remove("selected");
+        });
+        el.classList.add("selected");
+        waktuDipilih = el.innerText;
+    }
+
+    // ====================
+    // HALAMAN AKTIVITAS
+    // ====================
+    function aktivitasPage() {
+        tanggalDipilih = document.getElementById("tanggal").value;
+        jamDipilih = document.getElementById("jam").value;
+
+        if (tanggalDipilih === "" || jamDipilih === "" || waktuDipilih === "") {
+            alert("Isi tanggal, jam, dan waktu dulu ya 💕");
+            return;
+        }
+
+        app.innerHTML = `
+            <h1>Nanti kita ngapain sayang?</h1>
+            <p>Pilih aktivitas favorit kita 💕</p>
+            <div class="grid">
+                <div class="activity" onclick="pilihAktivitas('🍝 Makan Bareng')"><span>🍝</span>Makan Bareng</div>
+                <div class="activity" onclick="pilihAktivitas('☕ Ngopi Cantik')"><span>☕</span>Ngopi Cantik</div>
+                <div class="activity" onclick="pilihAktivitas('🎬 Nonton')"><span>🎬</span>Nonton</div>
+                <div class="activity" onclick="pilihAktivitas('🌅 Jalan Sore')"><span>🌅</span>Jalan Sore</div>
+                <div class="activity" onclick="pilihAktivitas('🧺 Piknik')"><span>🧺</span>Piknik</div>
+                <div class="activity" onclick="pilihAktivitas('🎮 Main Bareng')"><span>🎮</span>Main Bareng</div>
+                <div class="activity" onclick="pilihAktivitas('🛍️ Belanja')"><span>🛍️</span>Belanja</div>
+                <div class="activity" onclick="pilihAktivitas('🏠 Mager di Rumah')"><span>🏠</span>Mager di Rumah</div>
+            </div>
+        `;
+    }
+
+    // ====================
+    // PILIH AKTIVITAS
+    // ====================
+    function pilihAktivitas(nama) {
+        aktivitasDipilih = nama;
+        hasilPage();
+    }
+
+    // ====================
+    // HALAMAN HASIL
+    // ====================
+    function hasilPage() {
+        app.innerHTML = `
+            <h1>Yeay! 💕</h1>
+            <p>Date plan kita berhasil dibuat</p>
+            <div class="result-card" id="resultCard">
+                <h3>💕 Date Plan Kita 💕</h3>
+                <br>
+                <p>📅 ${tanggalDipilih}</p>
+                <p>🕒 ${waktuDipilih}</p>
+                <p>⏰ ${jamDipilih}</p>
+                <p>${aktivitasDipilih}</p>
+                <br>
+                <p>Aku tunggu ya ❤️</p>
+            </div>
+            <br>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button class="btn-primary" onclick="bagikanHasil()">💕 Bagikan</button>
+                <button class="btn-primary" onclick="downloadCard()">📷 Simpan Gambar</button>
+            </div>
+        `;
+    }
+
+    // ====================
+    // SIMPAN GAMBAR CARD (html2canvas)
+    // ====================
+    function downloadCard() {
+        html2canvas(document.getElementById("resultCard")).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "date-plan.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    }
+
+    // ====================
+    // SHARE JALUR WEB API / ALERT
+    // ====================
+    function bagikanHasil() {
+        const teks = `💕 Date Plan Kita 💕\n\n📅 ${tanggalDipilih}\n🕒 ${waktuDipilih}\n⏰ ${jamDipilih}\n🎯 ${aktivitasDipilih}\n\nAku tunggu ya ❤️`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: "Date Plan Kita 💕",
+                text: teks,
+                url: window.location.href
+            });
+        } else {
+            alert(teks);
+        }
+    }
 </script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </body>
 </html>
