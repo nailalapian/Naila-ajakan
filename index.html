@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Buat Arwa 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Poppins,sans-serif;background:#F8F2EC;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.card{background:#fff;width:100%;max-width:600px;border-radius:25px;padding:25px;box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center}
+h1{font-family:"Dancing Script",cursive;color:#24364F}
+button{background:#8FB3D9;color:#fff;border:none;padding:12px 22px;border-radius:30px;cursor:pointer}
+input{width:90%;padding:12px;border-radius:15px;border:1px solid #ddd;margin:8px 0}
+.profile{width:220px;height:280px;object-fit:cover;border-radius:15px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.item{border:1px solid #ddd;padding:15px;border-radius:15px;cursor:pointer}
+.progress{height:10px;background:#eee;border-radius:10px;overflow:hidden}
+.bar{height:100%;background:#8FB3D9;width:0;animation:load 3s forwards}
+@keyframes load{to{width:100%}}
+#noBtn{background:#eee;color:#666}
+.result{background:#fff8fb;border:2px dashed #8FB3D9;padding:15px;border-radius:15px}
+</style>
+</head>
+<body>
+<div class="card" id="app"></div>
 
+<script>
+const app=document.getElementById("app");
+let tanggal="",jam="",aktivitas="";
+
+loading();
+
+function loading(){
+app.innerHTML=`<div style="font-size:70px">🌸</div><h2>Sebentar, bunganya sedang mekar...</h2><div class="progress"><div class="bar"></div></div>`;
+setTimeout(amplop,3000);
+}
+
+function amplop(){
+app.innerHTML=`<p>UNDANGAN PRIBADI</p><h1>Buat Arwa</h1><div style="font-size:100px;cursor:pointer" onclick="ajakan()">✉️</div><p>Ada sesuatu buat kamu sayangku 💕</p>`;
+}
+
+function ajakan(){
+app.innerHTML=`
+<img class="profile" src="https://raw.githubusercontent.com/nailalapian/Naila-ajakan/main/IMG-20260612-WA0027.jpg">
+<h1>Mau enggak kamu pergi kencan denganku?</h1>
+<button onclick="tanggalPage()">Mau Buanget!</button>
+<button id="noBtn">Ga Ah</button>`;
+
+const n=document.getElementById("noBtn");
+n.onmouseover=()=>{
+n.style.position="fixed";
+n.style.left=Math.random()*80+"vw";
+n.style.top=Math.random()*80+"vh";
+};
+}
+
+function tanggalPage(){
+app.innerHTML=`
+<h1>Kapan Sayangku Free?</h1>
+<input type="date" id="tgl"><br>
+<input type="time" id="jm"><br><br>
+<button onclick="aktivitasPage()">Lanjut</button>`;
+}
+
+function aktivitasPage(){
+tanggal=document.getElementById("tgl").value;
+jam=document.getElementById("jm").value;
+app.innerHTML=`
+<h1>Nanti Kita Ngapain Sayang?</h1>
+<div class="grid">
+<div class="item" onclick="pilih('🍝 Makan Bareng')">🍝<br>Makan Bareng</div>
+<div class="item" onclick="pilih('☕ Ngopi Cantik')">☕<br>Ngopi</div>
+<div class="item" onclick="pilih('🎬 Nonton')">🎬<br>Nonton</div>
+<div class="item" onclick="pilih('🌅 Jalan Sore')">🌅<br>Jalan</div>
+<div class="item" onclick="pilih('🧺 Piknik')">🧺<br>Piknik</div>
+<div class="item" onclick="pilih('🎮 Main Bareng')">🎮<br>Main</div>
+<div class="item" onclick="pilih('🛍️ Belanja')">🛍️<br>Belanja</div>
+<div class="item" onclick="pilih('🏠 Mager')">🏠<br>Mager</div>
+</div>`;
+}
+
+function pilih(a){aktivitas=a;hasil();}
+
+function hasil(){
+app.innerHTML=`
+<h1>Yeay! 💕</h1>
+<div class="result">
+<h3>Date Plan Kita</h3>
+<p>📅 ${tanggal}</p>
+<p>🕒 ${jam}</p>
+<p>${aktivitas}</p>
+<p>Aku tunggu ya ❤️</p>
+</div><br>
+<button onclick="shareResult()">💕 Bagikan</button>`;
+}
+
+function shareResult(){
+const text=`💕 Date Plan Kita\n📅 ${tanggal}\n🕒 ${jam}\n${aktivitas}\n❤️`;
+if(navigator.share){
+navigator.share({title:'Date Plan',text:text,url:location.href});
+}else{
+alert(text);
+}
+}
+</script>
+</body>
+</html>
