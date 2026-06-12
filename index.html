@@ -85,28 +85,49 @@
             font-size: 15px;
         }
 
+        /* --- DEKORASI STIKER WATERCOLOR --- */
+        .asset-img {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .bow-sticker {
+            width: 60px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
         .profile {
             width: 220px;
             height: 280px;
             object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+            border-radius: 4px; /* Biar pas masuk di dalam frame polaroid */
         }
 
         .polaroid {
             background: white;
-            padding: 12px 12px 40px;
-            width: 250px;
+            padding: 15px 15px 45px;
+            width: 255px;
             margin: auto;
             box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
             transform: rotate(-3deg);
-            border-radius: 8px;
+            border-radius: 4px;
+            position: relative;
+            background-image: url('assets/polaroid.png'); /* Opsional: kalau mau pakai frame gambar */
+            background-size: cover;
         }
 
         .polaroid p {
-            margin-top: 10px;
+            margin-top: 12px;
             font-weight: 600;
             color: #e91e63;
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
         }
 
         .progress {
@@ -125,28 +146,24 @@
             animation: loading 3s linear forwards;
         }
 
-        @keyframes loading {
-            to { width: 100%; }
-        }
+        @keyframes loading { to { width: 100%; } }
 
-        .flower {
-            font-size: 80px;
-            animation: bloom 2s ease;
+        .flower-loading {
+            animation: bloom 2s ease forwards;
         }
 
         @keyframes bloom {
             0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.1); opacity: 1; }
         }
 
-        .envelope {
-            font-size: 120px;
+        .envelope-click {
             cursor: pointer;
             transition: .3s;
         }
+        .envelope-click:hover { transform: scale(1.1) rotate(3deg); }
 
-        .envelope:hover { transform: scale(1.1); }
-
+        /* --- GRID DAN UKURAN GAMBAR AKTIVITAS --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -156,20 +173,27 @@
 
         .activity {
             padding: 15px;
-            border: 1px solid #eee;
+            border: 1px solid #f0f0f0;
             border-radius: 20px;
             cursor: pointer;
             transition: .3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
         }
 
         .activity:hover {
             transform: translateY(-5px);
             background: #f7fbff;
+            border-color: #8FB3D9;
         }
 
-        .activity span {
-            font-size: 40px;
-            display: block;
+        .activity img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
             margin-bottom: 10px;
         }
 
@@ -179,6 +203,7 @@
             border-radius: 20px;
             padding: 20px;
             margin-top: 15px;
+            position: relative;
         }
 
         .time-group {
@@ -201,15 +226,15 @@
         .petal {
             position: fixed;
             top: -50px;
-            font-size: 25px;
             animation: fall linear infinite;
             pointer-events: none;
             z-index: 999;
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
         }
 
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
-        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
         .music-btn {
             position: fixed;
@@ -253,47 +278,35 @@
     let waktuDipilih = "";
     let aktivitasDipilih = "";
 
-    // Fungsi Pengatur Musik agar tidak terblokir kebijakan browser autoplay otomatis
     function toggleMusic() {
         const audio = document.getElementById('musik');
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
+        if (audio.paused) { audio.play(); } else { audio.pause(); }
     }
 
     loadingPage();
 
-    // Efek Kelopak Bunga Sakura Gugur
+    // Efek Kelopak Bunga Gugur Menggunakan PNG Transparan Kamu
     setInterval(() => {
-        const petal = document.createElement("div");
+        const petal = document.createElement("img");
         petal.className = "petal";
-        petal.innerHTML = "🌸";
+        petal.src = "assets/flower_petals.png"; // Memakai file kelopak bunga pilihanmu
         petal.style.left = Math.random() * 100 + "vw";
         petal.style.animationDuration = (5 + Math.random() * 5) + "s";
         document.body.appendChild(petal);
-
-        setTimeout(() => {
-            petal.remove();
-        }, 10000);
-    }, 500);
+        setTimeout(() => { petal.remove(); }, 10000);
+    }, 600);
 
     // ====================
     // HALAMAN LOADING
     // ====================
     function loadingPage() {
         app.innerHTML = `
-            <div class="flower">🌸</div>
+            <img src="assets/flower.png" class="asset-img flower-loading" alt="Bunga Mekar">
             <h2>Sebentar, bunganya sedang mekar...</h2>
             <p>Tunggu bentar ya sayang 💕</p>
-            <div class="progress">
-                <div class="bar"></div>
-            </div>
+            <div class="progress"><div class="bar"></div></div>
         `;
-        setTimeout(() => {
-            amplopPage();
-        }, 3000);
+        setTimeout(() => { amplopPage(); }, 3000);
     }
 
     // ====================
@@ -303,7 +316,7 @@
         app.innerHTML = `
             <p style="color:#e91e63;font-weight:600;">Undangan Pribadi</p>
             <h1>buat Arwa 💕</h1>
-            <div class="envelope" onclick="ajakanPage()">💌</div>
+            <img src="assets/envelope.png" class="asset-img envelope-click" onclick="ajakanPage()" alt="Amplop Pink">
             <p>Ada sesuatu buat kamu sayangku</p>
             <p style="font-size:12px;margin-top:10px;">Tap amplopnya buat buka</p>
         `;
@@ -314,6 +327,7 @@
     // ====================
     function ajakanPage() {
         app.innerHTML = `
+            <img src="assets/cute_bow.png" class="bow-sticker">
             <div class="polaroid">
                 <img src="${foto}" class="profile">
                 <p>buat Arwa 💕</p>
@@ -332,18 +346,13 @@
         function lariTombol() {
             const x = Math.random() * (window.innerWidth - 120);
             const y = Math.random() * (window.innerHeight - 60);
-
             btnNo.style.position = "fixed";
             btnNo.style.left = x + "px";
             btnNo.style.top = y + "px";
             btnNo.style.zIndex = "9999";
         }
-
         btnNo.addEventListener("mouseover", lariTombol);
-        btnNo.addEventListener("touchstart", function(e) {
-            e.preventDefault();
-            lariTombol();
-        });
+        btnNo.addEventListener("touchstart", function(e) { e.preventDefault(); lariTombol(); });
     }
 
     // ====================
@@ -366,19 +375,14 @@
         `;
     }
 
-    // ====================
-    // PILIH WAKTU
-    // ====================
     function pilihWaktu(el) {
-        document.querySelectorAll(".time-btn").forEach(btn => {
-            btn.classList.remove("selected");
-        });
+        document.querySelectorAll(".time-btn").forEach(btn => btn.classList.remove("selected"));
         el.classList.add("selected");
         waktuDipilih = el.innerText;
     }
 
     // ====================
-    // HALAMAN AKTIVITAS
+    // HALAMAN AKTIVITAS (MEMAKAI ASET WATERCOLOR KAMU)
     // ====================
     function aktivitasPage() {
         tanggalDipilih = document.getElementById("tanggal").value;
@@ -393,21 +397,18 @@
             <h1>Nanti kita ngapain sayang?</h1>
             <p>Pilih aktivitas favorit kita 💕</p>
             <div class="grid">
-                <div class="activity" onclick="pilihAktivitas('🍝 Makan Bareng')"><span>🍝</span>Makan Bareng</div>
-                <div class="activity" onclick="pilihAktivitas('☕ Ngopi Cantik')"><span>☕</span>Ngopi Cantik</div>
-                <div class="activity" onclick="pilihAktivitas('🎬 Nonton')"><span>🎬</span>Nonton</div>
-                <div class="activity" onclick="pilihAktivitas('🌅 Jalan Sore')"><span>🌅</span>Jalan Sore</div>
-                <div class="activity" onclick="pilihAktivitas('🧺 Piknik')"><span>🧺</span>Piknik</div>
-                <div class="activity" onclick="pilihAktivitas('🎮 Main Bareng')"><span>🎮</span>Main Bareng</div>
-                <div class="activity" onclick="pilihAktivitas('🛍️ Belanja')"><span>🛍️</span>Belanja</div>
-                <div class="activity" onclick="pilihAktivitas('🏠 Mager di Rumah')"><span>🏠</span>Mager di Rumah</div>
+                <div class="activity" onclick="pilihAktivitas('🍝 Makan Bareng')"><img src="assets/makan.png"><p>Makan Bareng</p></div>
+                <div class="activity" onclick="pilihAktivitas('☕ Ngopi Cantik')"><img src="assets/kopi.png"><p>Ngopi Cantik</p></div>
+                <div class="activity" onclick="pilihAktivitas('🎬 Nonton')"><img src="assets/nonton.png"><p>Nonton</p></div>
+                <div class="activity" onclick="pilihAktivitas('🌅 Jalan Sore')"><img src="assets/jalan.png"><p>Jalan Sore</p></div>
+                <div class="activity" onclick="pilihAktivitas('🧺 Piknik')"><img src="assets/piknik.png"><p>Piknik</p></div>
+                <div class="activity" onclick="pilihAktivitas('🎮 Main Bareng')"><img src="assets/main.png"><p>Main Bareng</p></div>
+                <div class="activity" onclick="pilihAktivitas('🛍️ Belanja')"><img src="assets/belanja.png"><p>Belanja</p></div>
+                <div class="activity" onclick="pilihAktivitas('🏠 Mager di Rumah')"><img src="assets/mager.png"><p>Mager di Rumah</p></div>
             </div>
         `;
     }
 
-    // ====================
-    // PILIH AKTIVITAS
-    // ====================
     function pilihAktivitas(nama) {
         aktivitasDipilih = nama;
         hasilPage();
@@ -421,6 +422,7 @@
             <h1>Yeay! 💕</h1>
             <p>Date plan kita berhasil dibuat</p>
             <div class="result-card" id="resultCard">
+                <img src="assets/scrapbook_sticker.png" style="position:absolute; top:-15px; right:-15px; width:50px;" alt="Sticker">
                 <h3>💕 Date Plan Kita 💕</h3>
                 <br>
                 <p>📅 ${tanggalDipilih}</p>
@@ -438,9 +440,6 @@
         `;
     }
 
-    // ====================
-    // SIMPAN GAMBAR CARD (html2canvas)
-    // ====================
     function downloadCard() {
         html2canvas(document.getElementById("resultCard")).then(canvas => {
             const link = document.createElement("a");
@@ -450,18 +449,10 @@
         });
     }
 
-    // ====================
-    // SHARE JALUR WEB API / ALERT
-    // ====================
     function bagikanHasil() {
         const teks = `💕 Date Plan Kita 💕\n\n📅 ${tanggalDipilih}\n🕒 ${waktuDipilih}\n⏰ ${jamDipilih}\n🎯 ${aktivitasDipilih}\n\nAku tunggu ya ❤️`;
-
         if (navigator.share) {
-            navigator.share({
-                title: "Date Plan Kita 💕",
-                text: teks,
-                url: window.location.href
-            });
+            navigator.share({ title: "Date Plan Kita 💕", text: teks, url: window.location.href });
         } else {
             alert(teks);
         }
