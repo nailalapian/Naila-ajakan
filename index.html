@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mau Nggak?</title>
+    <title>Untuk Kamu</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffeef8 0%, #ffd1e8 100%);
+            background-color: #fce4ec;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,133 +23,161 @@
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 40px;
+            background: white;
+            padding: 35px 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(224, 75, 147, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             max-width: 90%;
-            width: 450px;
-            transition: all 0.3s ease;
+            width: 400px;
+            border: 1px solid #f8bbd0;
         }
 
         .gif-container img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 20px;
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            margin-bottom: 25px;
         }
 
         h1 {
-            color: #d13b7d;
-            font-size: 24px;
+            color: #212121;
+            font-size: 18px;
+            font-weight: 600;
             margin-bottom: 30px;
-            line-height: 1.4;
+            line-height: 1.6;
+            white-space: pre-line;
         }
 
         .btn-group {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            height: 60px;
+            gap: 15px;
+            height: 50px;
             position: relative;
         }
 
         button {
-            padding: 12px 30px;
-            font-size: 18px;
-            font-weight: bold;
+            padding: 10px 25px;
+            font-size: 15px;
+            font-weight: 600;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.1s ease, background-color 0.2s;
+            transition: all 0.1s ease;
             outline: none;
         }
 
-        #btn-mau {
-            background-color: #e04b93;
+        .btn-next {
+            background-color: #e91e63;
             color: white;
-            box-shadow: 0 5px 15px rgba(224, 75, 147, 0.4);
+            box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
         }
 
-        #btn-mau:hover {
-            background-color: #c9367c;
+        .btn-next:hover {
+            background-color: #d81b60;
             transform: scale(1.05);
         }
 
         #btn-ngga {
-            background-color: #9e9e9e;
-            color: white;
-            position: absolute; /* Penting untuk animasi lari */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            /* Memastikan tombol mulai di posisi kanan container */
-            left: 55%; 
+            background-color: #eeeeee;
+            color: #757575;
+            border: 1px solid #e0e0e0;
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="main-container">
+    <div class="container">
         <div class="gif-container">
-            <img id="display-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3BwN3M0MnN2Z3h6Ym94bmM3azZ5MDZtcXBtZzd0ZnM4Ym82Y3Z0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c4v65wP4gUf9MAtR8s/giphy.gif" alt="Cute gif">
+            <img id="display-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3BwN3M0MnN2Z3h6Ym94bmM3azZ5MDZtcXBtZzd0ZnM4Ym82Y3Z0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c4v65wP4gUf9MAtR8s/giphy.gif" alt="Cute GIF">
         </div>
         
-        <h1 id="question-text">Kamu mau nggak jadi pacar aku? 🫣</h1>
+        <h1 id="question-text">Loading...</h1>
 
-        <div class="btn-group">
-            <button id="btn-mau" onclick="terimaKasih()">Mau</button>
-            <button id="btn-ngga">Nggak Ah</button>
-        </div>
+        <div class="btn-group" id="action-area">
+            </div>
     </div>
 
     <script>
-        const btnNgga = document.getElementById('btn-ngga');
-        const btnMau = document.getElementById('btn-mau');
         const questionText = document.getElementById('question-text');
         const displayImg = document.getElementById('display-img');
+        const actionArea = document.getElementById('action-area');
+        
+        let currentStep = 0;
 
-        // Fungsi membuat tombol "Nggak Ah" berpindah tempat spontan
-        function lari() {
-            // Menghitung batas aman pergerakan agar tidak keluar dari layar browser
-            const padding = 20;
-            const maxX = window.innerWidth - btnNgga.offsetWidth - padding;
-            const maxY = window.innerHeight - btnNgga.offsetHeight - padding;
+        // Alur cerita asli dari screenshot (Ajakan Kencan / Jalan Bareng)
+        const alurCerita = [
+            { text: "Haiii..", type: "next", label: "Hai juga" },
+            { text: "Sabtu ini kamu sibuk nggak?", type: "next", label: "Nggak sih, emang kenapa?" },
+            { text: "Kalau nggak sibuk, jalan yuk?", type: "next", label: "Jalan ke mana?" },
+            { text: "Mau cari makan atau nonton bioskop gituu, terserah kamu deh mau ke mana aja", type: "next", label: "Boleh deh" },
+            { text: "Seriusan mau?? 😍", type: "choice" }, // Di sini tombol "Nggak Ah" muncul dan lari
+            { text: "Asiiikkk! Gak sabar sabtu depan 🥳", type: "next", label: "Hehe iyaaa" },
+            { text: "Nanti aku jemput ya jam 7 malam", type: "next", label: "Okee siap!" },
+            { text: "See youuu! Jangan lupa dandan yang cantik yaaa ✨", type: "final" }
+        ];
 
-            // Mengenerate koordinat acak
+        function renderStep() {
+            const data = alurCerita[currentStep];
+            questionText.innerHTML = data.text;
+            actionArea.innerHTML = ""; 
+
+            if (data.type === "next") {
+                const btn = document.createElement("button");
+                btn.className = "btn-next";
+                btn.innerHTML = data.label;
+                btn.addEventListener("click", () => {
+                    currentStep++;
+                    renderStep();
+                });
+                actionArea.appendChild(btn);
+
+            } else if (data.type === "choice") {
+                const btnMau = document.createElement("button");
+                btnMau.className = "btn-next";
+                btnMau.innerHTML = "Mauuu";
+                btnMau.addEventListener("click", () => {
+                    currentStep++;
+                    renderStep();
+                });
+
+                const btnNgga = document.createElement("button");
+                btnNgga.id = "btn-ngga";
+                btnNgga.innerHTML = "Nggak Ah";
+                
+                // Efek kabur khusus tombol Nggak Ah
+                btnNgga.addEventListener("mouseover", () => lari(btnNgga));
+                btnNgga.addEventListener("touchstart", (e) => {
+                    e.preventDefault();
+                    lari(btnNgga);
+                });
+
+                actionArea.appendChild(btnMau);
+                actionArea.appendChild(btnNgga);
+
+            } else if (data.type === "final") {
+                // Gambar penutup selebrasi girang
+                displayImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3E1b3ZpYmthbHh5ZzNndmtqZ3Rkdms4ZnV4ZHR2MnA2dWt1bTZ0biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/t372vDp9mcnYgZToCO/giphy.gif";
+            }
+        }
+
+        // Mekanik lari acak
+        function lari(element) {
+            const padding = 50;
+            const maxX = window.innerWidth - element.offsetWidth - padding;
+            const maxY = window.innerHeight - element.offsetHeight - padding;
+
             const randomX = Math.floor(Math.random() * maxX);
             const randomY = Math.floor(Math.random() * maxY);
 
-            // Mengubah posisi tombol menjadi absolut terhadap window browser
-            btnNgga.style.position = 'fixed';
-            btnNgga.style.left = randomX + 'px';
-            btnNgga.style.top = randomY + 'px';
+            element.style.position = "fixed";
+            element.style.left = randomX + "px";
+            element.style.top = randomY + "px";
+            element.style.zIndex = "999";
         }
 
-        // Pemicu gerak: saat mouse mendekat (PC) dan saat disentuh (HP)
-        btnNgga.addEventListener('mouseover', lari);
-        btnNgga.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Mencegah klik tidak sengaja di layar HP
-            lari();
-        });
-
-        // Fungsi ketika tombol "Mau" diklik
-        function terimaKasih() {
-            // Ubah teks pertanyaan
-            questionText.innerHTML = "Yeayyy! Makasih yaaa! 🥰❤️";
-            
-            // Ganti GIF jadi yang lebih happy
-            displayImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3E1b3ZpYmthbHh5ZzNndmtqZ3Rkdms4ZnV4ZHR2MnA2dWt1bTZ0biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/t372vDp9mcnYgZToCO/giphy.gif";
-            
-            // Sembunyikan tombol "Nggak Ah"
-            btnNgga.style.display = 'none';
-            
-            // Perbesar sedikit tombol "Mau" sebagai efek selebrasi
-            btnMau.style.transform = 'scale(1.2)';
-            btnMau.disabled = true; // Nonaktifkan setelah diklik
-        }
+        renderStep();
     </script>
 </body>
 </html>
